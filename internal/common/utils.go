@@ -1,8 +1,8 @@
-package main
+package common
 
 import "log"
 
-func logFatal(err error) {
+func LogFatal(err error) {
 	if err != nil {
 		log.Fatal("Fatal error: " + err.Error())
 	}

@@ -1,4 +1,4 @@
-module expenses
+module github.com/zgoldy/expenses
 
 go 1.15
 

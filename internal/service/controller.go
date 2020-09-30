@@ -1,23 +1,27 @@
-package main
+package service
 
 import (
 	"strconv"
 	"net/http"
 	"github.com/gin-gonic/gin"
+	"github.com/zgoldy/expenses/internal/db"
 )
 
-type controller struct {
-	repo	*repository
+// Controller -
+type Controller struct {
+	Repo	*db.Repository
 }
 
-func createController(r *repository) *controller {
-	return &controller{
-		repo: r,
+// CreateController -
+func createController(r *db.Repository) *Controller {
+	return &Controller{
+		Repo: r,
 	}
 }
 
-func (c *controller) getAllExpenses(ctx *gin.Context) {
-	expenses, err := c.repo.findAll()
+// GetAllExpenses -
+func (c *Controller) getAllExpenses(ctx *gin.Context) {
+	expenses, err := c.Repo.FindAll()
 	if err != nil {
 		ctx.JSON(
 			http.StatusNotFound,
@@ -37,10 +41,11 @@ func (c *controller) getAllExpenses(ctx *gin.Context) {
 	}
 }
 
-func (c *controller) getExpenseByID(ctx *gin.Context) {
+// GetExpenseByID -
+func (c *Controller) getExpenseByID(ctx *gin.Context) {
 	ID, _ := strconv.Atoi(ctx.Param("id"))
 	
-	expense, err := c.repo.findByID(ID)
+	expense, err := c.Repo.FindByID(ID)
 	if err != nil {
 		ctx.JSON(
 			http.StatusNotFound,

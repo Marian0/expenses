@@ -1,4 +1,4 @@
-package main
+package db
 
 import (
 	"os"
@@ -8,9 +8,11 @@ import (
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm"
 	"gorm.io/driver/postgres"
+	"github.com/zgoldy/expenses/internal/models"
 )
 
-func createDBConnection() *gorm.DB {
+// CreateDBConnection -
+func CreateDBConnection() *gorm.DB {
 	// Define a custom Logger to use with gORM
 	customLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
@@ -33,6 +35,7 @@ func createDBConnection() *gorm.DB {
 	return dbConn
 }
 
-func migrate(dbConn *gorm.DB) {
-	dbConn.AutoMigrate(&user{}, &expense{})
+// Migrate -
+func Migrate(dbConn *gorm.DB) {
+	dbConn.AutoMigrate(&models.User{}, &models.Expense{})
 }

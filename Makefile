@@ -12,7 +12,7 @@ devinit: main.go
 	go mod tidy
 
 expenses: main.go
-	GO111MODULE=on go build .
+	GO111MODULE=on go build github.com/zgoldy/expenses/cmd/expenses
 
 # swaggerlocal: go-swagger redoc
 
