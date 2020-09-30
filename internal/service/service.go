@@ -9,11 +9,11 @@ import (
 // Engine -
 type Engine struct {
 	Router 		*gin.Engine
-	Controller	*Controller
+	Controller	*controller
 }
 
 // CreateEngine -
-func createEngine(e *gin.Engine, c *Controller) *Engine {
+func createEngine(e *gin.Engine, c *controller) *Engine {
 	return &Engine{
 		Router:		e,
 		Controller:	c,

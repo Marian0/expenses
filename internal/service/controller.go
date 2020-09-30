@@ -8,19 +8,19 @@ import (
 )
 
 // Controller -
-type Controller struct {
+type controller struct {
 	Repo	*db.Repository
 }
 
 // CreateController -
-func createController(r *db.Repository) *Controller {
-	return &Controller{
+func createController(r *db.Repository) *controller {
+	return &controller{
 		Repo: r,
 	}
 }
 
 // GetAllExpenses -
-func (c *Controller) getAllExpenses(ctx *gin.Context) {
+func (c *controller) getAllExpenses(ctx *gin.Context) {
 	expenses, err := c.Repo.FindAll()
 	if err != nil {
 		ctx.JSON(
@@ -42,7 +42,7 @@ func (c *Controller) getAllExpenses(ctx *gin.Context) {
 }
 
 // GetExpenseByID -
-func (c *Controller) getExpenseByID(ctx *gin.Context) {
+func (c *controller) getExpenseByID(ctx *gin.Context) {
 	ID, _ := strconv.Atoi(ctx.Param("id"))
 	
 	expense, err := c.Repo.FindByID(ID)
