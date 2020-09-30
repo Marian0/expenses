@@ -8,27 +8,27 @@ import (
 
 // Engine -
 type Engine struct {
-	Router 		*gin.Engine
-	Controller	*controller
+	router 		*gin.Engine
+	controller	*controller
 }
 
 // CreateEngine -
 func createEngine(e *gin.Engine, c *controller) *Engine {
 	return &Engine{
-		Router:		e,
-		Controller:	c,
+		router:		e,
+		controller:	c,
 	}
 }
 
 // SetupEndpoints -
 func (eng *Engine) setupEndpoints() {
-	apiEndpoints := eng.Router.Group("/api/")
+	apiEndpoints := eng.router.Group("/api/")
 	
-	apiEndpoints.GET("expenses", eng.Controller.getAllExpenses)
-	apiEndpoints.GET("expenses/:id", eng.Controller.getExpenseByID)
+	apiEndpoints.GET("expenses", eng.controller.getAllExpenses)
+	apiEndpoints.GET("expenses/:id", eng.controller.getExpenseByID)
 }
 
 // Run -
 func (eng *Engine) Run() {
-	eng.Router.Run(":" + os.Getenv("APP_PORT"))
+	eng.router.Run(":" + os.Getenv("APP_PORT"))
 }
