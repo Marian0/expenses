@@ -2,7 +2,7 @@
 .env
 
 #Binary file
-expenses
+migrate.exe
 expenses.exe
 
 ### Go ###
